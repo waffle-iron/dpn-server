@@ -8,7 +8,10 @@ class ChangeFixityChecksToDigests < ActiveRecord::Migration
   def up
     # Foreign keys are not renamed when you rename the table.
     # We recreate this fk after renaming the table.
-    remove_foreign_key :fixity_checks, :bags
+    fk_column = foreign_key_column_for(:bags) # 'bag_id'
+    if foreign_keys(:fixity_checks).map(&:column).include? fk_column
+      remove_foreign_key :fixity_checks, :bags
+    end
     rename_table :fixity_checks, :message_digests
   end
 
