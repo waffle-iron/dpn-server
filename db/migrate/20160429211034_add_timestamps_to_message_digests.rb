@@ -17,7 +17,12 @@ class AddTimestampsToMessageDigests < ActiveRecord::Migration
     MessageDigest.all.each do |md|
       md.update!(created_at: md.bag.created_at)
     end
-    change_column :message_digests, :created_at, :datetime, null: false
+    execute("
+      ALTER TABLE `message_digests`
+      MODIFY created_at
+      TIMESTAMP
+      DEFAULT CURRENT_TIMESTAMP NOT NULL;
+    ")
   end
 
   def down
