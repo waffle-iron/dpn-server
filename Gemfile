@@ -41,6 +41,8 @@ gem 'logstash-event'
 
 gem 'okcomputer' # app monitoring
 
+gem 'pg' # postgres-db
+
 gem 'rpairtree'
 gem 'rsync', '~>1.0.9'
 
@@ -48,7 +50,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Note: These are not in a group block because doing
 #       so breaks group block usage in Gemfile.local
-gem 'sqlite3', group: [:development, :test]
 gem 'app_version_tasks', group: [:development, :test]
 gem 'byebug', group: [:development, :test]
 gem 'codeclimate-test-reporter', group: [:development, :test]
